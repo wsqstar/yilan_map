@@ -33,6 +33,10 @@
 
   <script type="text/javascript">
     var dom = document.getElementById('container');
+    // dom.addControl(new BMap.NavigationControl());    
+    // dom.addControl(new BMap.ScaleControl());    
+    // dom.addControl(new BMap.OverviewMapControl());    
+    // dom.addControl(new BMap.MapTypeControl());    
     var myChart = echarts.init(dom, null, {
       renderer: 'canvas',
       useDirtyRect: false
@@ -539,6 +543,16 @@ option = {
 
     if (option && typeof option === 'object') {
       myChart.setOption(option);
+      var bmap = myChart.getModel().getComponent('bmap').getBMap();  //获取控件
+      bmap.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
+      bmap.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
+      bmap.enableContinuousZoom();                              //启用地图惯性拖拽，默认禁用
+      bmap.addControl(new BMap.OverviewMapControl());              //添加缩略地图控件
+      bmap.enableScrollWheelZoom();                            //启用滚轮放大缩小
+      // bmap.addControl(new BMap.MapTypeControl());          //添加地图类型控件
+      bmap.disable3DBuilding();
+      bmap.centerAndZoom(point, 14);
+      bmap.setMapStyle({style:'normal'});          //设置模板的初始风格
     }
 
     window.addEventListener('resize', myChart.resize);
