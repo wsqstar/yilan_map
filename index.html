@@ -54,9 +54,30 @@
   { name: '青岛', value: 15},
   { name: '长沙', value: 13},
   { name: '西安', value: 13},
-  { name: '南京', value: 13}
+  { name: '南京', value: 13},
+  { name: '英国',value:30},
+  { name: '美东',value:44},
+  {name:'香港',value:28},
+  {name:'欧洲大陆',value:27},
+  {name:'美西',value:24},
+  {name:'南半球',value:16},
+  {name:'多伦多',value:16},
+  {name:'新加坡',value:11},
+  {name:'东京',value:8},
+  {name:'苏锡常',value:30},
+  {name:'海南',value:6}
 ];
 var geoCoordMap = {
+  香港:[114.066524322,22.2830891],
+  苏锡常: [120.62, 31.32],
+  东京:[139.2093822,35.5090627],
+  新加坡:[103.704165,1.3143394],
+  多伦多:[-79.5181409,43.7184038],
+  美西:[-118.6919162,34.0207305],
+  欧洲大陆:[8.4964817,50.1213479],
+  南半球:[144.7729572,-37.9716929],
+  英国:[-0.2416816,51.5287718],
+  美东:[-74.1197641,40.6976637],
   海门: [121.15, 31.89],
   鄂尔多斯: [109.781327, 39.608266],
   招远: [120.38, 37.35],
@@ -132,7 +153,7 @@ var geoCoordMap = {
   铜川: [109.11, 35.09],
   平度: [119.97, 36.77],
   佛山: [113.11, 23.05],
-  海口: [110.35, 20.02],
+  海南: [110.35, 20.02],
   江门: [113.06, 22.61],
   章丘: [117.53, 36.72],
   肇庆: [112.44, 23.05],
@@ -306,7 +327,7 @@ option = {
   },
   bmap: {
     center: [104.114129, 37.550339],
-    zoom: 5,
+    zoom: 4,
     roam: true,
     mapStyle: {
       styleJson: [
@@ -342,7 +363,7 @@ option = {
           featureType: 'highway',
           elementType: 'geometry',
           stylers: {
-            color: '#004981'
+            visibility: 'off'
           }
         },
         {
@@ -443,7 +464,7 @@ option = {
   },
   series: [
     {
-      name: 'pm2.5',
+      name: '一览分部',
       type: 'scatter',
       coordinateSystem: 'bmap',
       data: convertData(data),
@@ -451,7 +472,7 @@ option = {
         value: 2
       },
       symbolSize: function (val) {
-        return val[2] / 10;
+        return val[2] / 2;
       },
       label: {
         formatter: '{b}',
@@ -475,13 +496,13 @@ option = {
           .sort(function (a, b) {
             return b.value - a.value;
           })
-          .slice(0, 10)
+          .slice(0, 20)
       ),
       encode: {
         value: 2
       },
       symbolSize: function (val) {
-        return val[2] / 10;
+        return val[2] / 3;
       },
       showEffectOn: 'emphasis',
       rippleEffect: {
