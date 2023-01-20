@@ -473,7 +473,13 @@ option = {
         value: 2
       },
       symbolSize: function (val) {
-        return val[2] / 2;
+        // var val_new = val;
+        // if (val_new < 10){
+        //    return val_new[2]/2;
+        //   }else {
+        //     return val_new[2]*2;
+        //   }
+        return val[2]/1.5;
       },
       label: {
         formatter: '{b}',
@@ -497,13 +503,19 @@ option = {
           .sort(function (a, b) {
             return b.value - a.value;
           })
-          .slice(0, 20)
+          .slice(0, 30)
       ),
       encode: {
         value: 2
       },
       symbolSize: function (val) {
-        return val[2] / 3;
+        // var val_new = val;
+        // if (val_new < 10){
+        //    return val_new[2] / 2 ;
+        //   }else {
+        //     return val_new[2]* 2;
+        //   }
+        return val[2]/2;
       },
       showEffectOn: 'emphasis',
       rippleEffect: {
